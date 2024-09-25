@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Middleware\BlockCaliforniaUsers;
+
+Route::middleware([BlockCaliforniaUsers::class])->group(function () {
+    Route::get('/', function () {
+        return view('laravel-project');
+    });
 });
